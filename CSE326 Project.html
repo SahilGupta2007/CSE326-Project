@@ -1,0 +1,541 @@
+<html>
+<head>
+    <title>TIME LUX | Luxury Timepieces</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #14151a;
+            --secondary: #d4af37;
+            --text-light: #ffffff;
+            --text-dark: #14151a;
+            --bg-dark: #14151a;
+            --bg-light: #ffffff;
+        }
+
+        .top-banner {
+            background: linear-gradient(90deg, var(--secondary), #b4942c);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        header {
+            background: var(--bg-dark);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--text-light);
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 15px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 90vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDE4bnk1ZzluMG1mMGs1a2Ixb2htenBvYTVmYWdweWExY2F3M2duaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/t36iM0BQz5ewzVdG6T/giphy.gif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--secondary);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .featured-section {
+            padding: 80px 40px;
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .watch-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .watch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .watch-image {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+        }
+
+        .watch-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .watch-card:hover .watch-image img {
+            transform: scale(1.1);
+        }
+
+        .watch-details {
+            padding: 25px;
+        }
+
+        .watch-brand {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .watch-name {
+            font-size: 20px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .watch-price {
+            font-size: 24px;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .watch-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature {
+            font-size: 13px;
+            color: #666;
+            background: #f5f5f5;
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .collection-section {
+            padding: 80px 40px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .collection-card {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        .collection-overlay h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter-section {
+            padding: 80px 40px;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="top-banner">
+        Free worldwide shipping on all orders over &#8377;100000 | 24/7 Concierge Service
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">TIME<span>LUX</span></a>
+            <nav>
+                <a href="https://www.chrono24.in/search/categories.htm" target="_blank">Collections</a>
+                <a href="https://www.chrono24.in/search/index.htm?dosearch=true&query=+men%27s" target="_blank">Men</a>
+                <a href="https://www.chrono24.in/search/index.htm?dosearch=true&query=+women%27s" target="_blank">Women</a>
+                <!--<a href="#luxury">Luxury</a>-->
+                <a href="https://www.chrono24.in/" target="_blank">New Arrivals</a>
+                <a href="https://www.chrono24.in/" target="_blank">Sale</a>            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Timeless Elegance<br>Modern Precision</h1>
+            <p>Discover our collection of premium timepieces crafted with excellence and sophistication</p>
+            <a href="https://www.chrono24.in/search/categories.htm" class="cta-button" target="_blank">Explore Collection</a>
+        </div>
+    </div>
+
+    <section class="featured-section">
+        <div class="section-title">
+            <h2>Featured Timepieces</h2>
+            <p>Hand-selected premium watches that define luxury and sophistication</p>
+        </div>
+        <div class="featured-grid">
+            <div class="watch-card">
+                <div class="watch-image">
+                    <img src="https://img.chrono24.com/images/uhren/36018403-4vqroxo154qde4yjggp56vr3-ExtraLarge.jpg" alt="Luxury Watch 1">
+                </div>
+                <div class="watch-details">
+                    <div class="watch-brand">OMEGA</div>
+                    <h3 class="watch-name">Seamaster Diver 300 M</h3>
+                    <div class="watch-price">&#8377;350,630</div>
+                    <div class="watch-features">
+                        <span class="feature">Automatic</span>
+                        <span class="feature">300m</span>
+                        <span class="feature">Chronograph</span>
+                    </div>
+                    <a href="https://www.chrono24.in/omega/seamaster--id36018403.htm?searchHash=6730bf8e_7Q5TIn&pos=13" class="cta-button" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <div class="watch-card">
+                <div class="watch-image">
+                    <img src="https://img.chrono24.com/images/uhren/36504088-h4xl3gceabyv9p58s7o2joyj-ExtraLarge.jpg" alt="Luxury Watch 2">
+                </div>
+                <div class="watch-details">
+                    <div class="watch-brand">ROLEX</div>
+                    <h3 class="watch-name">Submariner Date</h3>
+                    <div class="watch-price">&#8377;3,190,007</div>
+                    <div class="watch-features">
+                        <span class="feature">Automatic</span>
+                        <span class="feature">1000m</span>
+                        <span class="feature">Ceramic Bezel</span>
+                    </div>
+                    <a href="https://www.chrono24.in/rolex/rolex-submariner-date--id36504088.htm" class="cta-button" target="_blank">View Details</a>
+                </div>
+            </div>
+
+            <div class="watch-card">
+                <div class="watch-image">
+                    <img src="https://img.chrono24.com/images/uhren/29378980-hrvx1adne789xallg9y8ul41-ExtraLarge.jpg" alt="Luxury Watch 3">
+                </div>
+                <div class="watch-details">
+                    <div class="watch-brand">PATEK PHILIPPE</div>
+                    <h3 class="watch-name">Nautilus</h3>
+                    <div class="watch-price">&#8377;23,745,531</div>
+                    <div class="watch-features">
+                        <span class="feature">Automatic</span>
+                        <span class="feature">Rose Gold</span>
+                        <span class="feature">Limited</span>
+                    </div>
+                    <a href="https://www.chrono24.in/patekphilippe/patek-philippe-nautilus-59901r--2024--neu--new--full-set--blau--id29378980.htm?searchHash=87ec3b08_LdPDDk&pos=6" class="cta-button" target="_blank">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section">
+        <div class="section-title">
+            <h2 style="color:#FFFFFF;">Our Collections</h2>
+            <p>Explore our carefully curated collections of exceptional timepieces</p>
+        </div>
+        <div class="collection-grid">
+            <div class="collection-card">
+				<a href="https://www.chrono24.in/search/index.htm?dosearch=true&query=sports" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36693469-z0og5d8wcdqvleeg8ab55c6i-ExtraLarge.jpg" alt="Sport Collection">
+                <div class="collection-overlay">
+                    <h3>Sport Collection</h3>
+                    <p>Designed for adventure</p>
+                </div>
+				</a>
+            </div>
+            <div class="collection-card">
+				<a href="https://www.chrono24.in/search/index.htm?dosearch=true&query=classic" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36433684-43q29olsmx1boivzkaqdma7x-ExtraLarge.jpg" alt="Classic Collection">
+                <div class="collection-overlay">
+                    <h3>Classic Collection</h3>
+                    <p>Timeless elegance</p>
+                </div>
+				</a>
+            </div>
+			<div class="collection-card">
+				<a href="https://www.chrono24.in/watches/vintage-watches--14.htm?keyword=vintage-watches&keywordId=14&showpage=" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36279000-qq17hpk43938mdscderdzpkz-ExtraLarge.jpg">
+                <div class="collection-overlay">
+                    <h3>Vintage Collection</h3>
+                    <p>Past Memories</p>
+                </div>
+				</a>
+            </div>
+            <div class="collection-card">
+				<a href="https://www.chrono24.in/omega/constellation--mod60.htm?dosearch=true&query=Constellation" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36063653-3mv7y1rb9ma58yvx37boqh8r-ExtraLarge.jpg">
+                <div class="collection-overlay">
+                    <h3>Constellation Collection</h3>
+                    <p>Ultimate sophistication</p>
+                </div>
+				</a>
+            </div>
+			<div class="collection-card">
+				<a href="https://www.chrono24.in/patekphilippe/complications--mod96.htm?dosearch=true&query=Patek+Philippe+complications" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36920790-920cb8guea5z62skckjl1pxy-ExtraLarge.jpg">
+                <div class="collection-overlay">
+                    <h3>Complications Collection</h3>
+                    <p>Supreme Test of Ingenuity</p>
+                </div>
+				</a>
+            </div>
+			<div class="collection-card">
+				<a href="https://www.chrono24.in/rolex/submariner--mod1.htm?dosearch=true&query=Rolex+submariner" target="_blank">
+                <img src="https://img.chrono24.com/images/uhren/36196660-wwhp5e0n9t0takyby9w2gdnx-ExtraLarge.jpg">
+                <div class="collection-overlay">
+                    <h3>Submariner Collection</h3>
+                    <p>Dive Into Another World</p>
+                </div>
+				</a>
+            </div>
+</body>
+</html>
